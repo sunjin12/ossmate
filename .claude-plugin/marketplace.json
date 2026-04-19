@@ -1,0 +1,32 @@
+{
+  "name": "ossmate",
+  "owner": {
+    "name": "sunjin12",
+    "email": "sunjin12333@gmail.com"
+  },
+  "metadata": {
+    "description": "Ossmate — single-plugin marketplace for the OSS Maintainer's co-pilot",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "ossmate",
+      "source": {
+        "source": "github",
+        "repo": "sunjin12/ossmate",
+        "ref": "main"
+      },
+      "description": "PR triage, release notes, dep audits, stale sweeps, contributor onboarding for solo OSS maintainers",
+      "version": "0.1.0",
+      "strict": true,
+      "homepage": "https://github.com/sunjin12/ossmate",
+      "keywords": [
+        "oss",
+        "github",
+        "maintainer",
+        "triage",
+        "release-notes"
+      ]
+    }
+  ]
+}

@@ -25,7 +25,7 @@ It exists for two reasons:
 | Subagents | [.claude/agents/](.claude/agents/) | `[x]` Phase 5 (6 — haiku/sonnet/opus matched) |
 | Hooks | [.claude/hooks/](.claude/hooks/) | `[x]` Phase 3 (5 events, 21 tests) |
 | MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[x]` Phase 4 (11 tools, 3 templates) |
-| Plugin packaging | [.claude-plugin/](.claude-plugin/) | `[ ]` Phase 6 |
+| Plugin packaging | [.claude-plugin/](.claude-plugin/) | `[x]` Phase 6 (manifest + self-marketplace) |
 | Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | `[ ]` Phase 7 |
 | Status line | [.claude/statusline.sh](.claude/statusline.sh) | `[x]` Phase 1 |
 | Output styles | [.claude/output-styles/](.claude/output-styles/) | `[x]` Phase 1 |

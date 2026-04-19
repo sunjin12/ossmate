@@ -1,0 +1,26 @@
+{
+  "name": "ossmate",
+  "version": "0.1.0",
+  "description": "OSS Maintainer's co-pilot — PR triage, release notes, dep audits, stale sweeps, contributor onboarding through Claude Code",
+  "author": {
+    "name": "sunjin12",
+    "email": "sunjin12333@gmail.com"
+  },
+  "homepage": "https://github.com/sunjin12/ossmate",
+  "repository": "https://github.com/sunjin12/ossmate",
+  "license": "MIT",
+  "keywords": [
+    "oss",
+    "github",
+    "maintainer",
+    "triage",
+    "release-notes",
+    "dependency-audit",
+    "claude-code"
+  ],
+  "commands": "./.claude/commands/",
+  "agents": "./.claude/agents/",
+  "outputStyles": "./.claude/output-styles/",
+  "hooks": "./.claude-plugin/hooks.json",
+  "mcpServers": "./.claude-plugin/mcp.json"
+}

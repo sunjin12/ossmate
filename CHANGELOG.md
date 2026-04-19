@@ -28,3 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `Stop` — [stop_summary.py](.claude/hooks/stop_summary.py) appends one line per session to `.ossmate/journal.md`
 - Shared hook helpers in [.claude/hooks/_lib.py](.claude/hooks/_lib.py)
 - Hook contract test suite in [tests/test_hooks.py](tests/test_hooks.py) — 21 hermetic tests covering all 5 events, malformed input, and re-entry guard
+- MCP server `ossmate` (Phase 4) built on FastMCP — 11 tools and 3 template resources exposed over stdio:
+  - `repo.*` — `detect_project_type`, `list_recent_commits` (filesystem + git, no network)
+  - `changelog.*` — `parse` (Keep-a-Changelog 1.1), `propose_bump` (Conventional Commits → semver)
+  - `github.*` — `list_open_prs`, `list_merged_prs_since`, `get_pr_diff`, `list_stale_issues`, `whoami` (gh CLI shell-out, graceful degradation when `gh` is missing)
+  - `deps.*` — `read_lockfile` (npm / poetry / uv / cargo auto-detect), `check_advisories` (osv.dev batched query)
+  - Resources — `templates://release-notes`, `templates://issue-stale-nudge`, `templates://welcome`
+- MCP server registered via project-level [.mcp.json](.mcp.json); `enabledMcpjsonServers` gate added to [.claude/settings.json](.claude/settings.json)
+- 25 hermetic MCP tests in [tests/test_mcp_tools.py](tests/test_mcp_tools.py) — full suite now 46 tests, ~4.6 s

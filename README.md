@@ -24,7 +24,7 @@ It exists for two reasons:
 | Skills (slash commands) | [.claude/commands/](.claude/commands/) | `[~]` Phase 2 (1/8 — `/triage-issue`) |
 | Subagents | [.claude/agents/](.claude/agents/) | `[ ]` Phase 5 |
 | Hooks | [.claude/hooks/](.claude/hooks/) | `[x]` Phase 3 (5 events, 21 tests) |
-| MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[ ]` Phase 4 |
+| MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[x]` Phase 4 (11 tools, 3 templates) |
 | Plugin packaging | [.claude-plugin/](.claude-plugin/) | `[ ]` Phase 6 |
 | Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | `[ ]` Phase 7 |
 | Status line | [.claude/statusline.sh](.claude/statusline.sh) | `[x]` Phase 1 |

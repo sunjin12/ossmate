@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/mcp.json",
+  "mcpServers": {
+    "ossmate": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-X", "utf8", "-m", "ossmate_mcp"],
+      "env": {
+        "PYTHONPATH": "${CLAUDE_PROJECT_DIR}/mcp/ossmate_mcp/src",
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}

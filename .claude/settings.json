@@ -44,6 +44,8 @@
     "OSSMATE_PROJECT_ROOT": "${CLAUDE_PROJECT_DIR}",
     "OSSMATE_AUDIT_LOG": "${CLAUDE_PROJECT_DIR}/.ossmate/audit.jsonl"
   },
+  "enableAllProjectMcpServers": false,
+  "enabledMcpjsonServers": ["ossmate"],
   "outputStyle": "maintainer",
   "statusLine": {
     "type": "command",

@@ -1,0 +1,7 @@
+{
+  "_comment": "Copy this to settings.local.json (gitignored) and fill in real values. Do NOT commit secrets.",
+  "env": {
+    "GITHUB_TOKEN": "ghp_replace_me",
+    "OSSMATE_DEFAULT_REPO": "sunjin12/ossmate"
+  }
+}

@@ -19,3 +19,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cross-platform status line ([.claude/statusline.sh](.claude/statusline.sh) + [.claude/statusline.cmd](.claude/statusline.cmd))
 - `outputStyle` and `statusLine` wired in `.claude/settings.json`
 - Recommended keybindings sample ([.claude/keybindings.json.example](.claude/keybindings.json.example))
+- First slash command [/triage-issue](.claude/commands/triage-issue.md) — Bash-only (Phase 2). Classifies an issue, proposes existing labels, drafts a maintainer reply. Read-only `gh` calls; never closes/comments/labels by itself

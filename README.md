@@ -21,7 +21,7 @@ It exists for two reasons:
 
 | Surface | Where | Status |
 |---|---|---|
-| Skills (slash commands) | [.claude/commands/](.claude/commands/) | `[ ]` Phase 2 |
+| Skills (slash commands) | [.claude/commands/](.claude/commands/) | `[~]` Phase 2 (1/8 — `/triage-issue`) |
 | Subagents | [.claude/agents/](.claude/agents/) | `[ ]` Phase 5 |
 | Hooks | [.claude/hooks/](.claude/hooks/) | `[ ]` Phase 3 |
 | MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[ ]` Phase 4 |

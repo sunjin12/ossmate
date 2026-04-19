@@ -115,6 +115,28 @@ class TestVersionedFilesShape:
         assert "metadata" in data and "version" in data["metadata"]
         assert data["plugins"] and "version" in data["plugins"][0]
 
+    def test_init_modules_dont_hardcode_versions(self):
+        """`__init__.py` files MUST resolve __version__ from importlib.metadata
+        rather than hardcoding the literal — otherwise `bump_version.py`
+        misses them and `ossmate version` lies to users (regression caught
+        in v0.1.0 post-release)."""
+        for init in (
+            REPO_ROOT / "cli" / "ossmate" / "src" / "ossmate" / "__init__.py",
+            REPO_ROOT / "mcp" / "ossmate_mcp" / "src" / "ossmate_mcp" / "__init__.py",
+        ):
+            text = init.read_text(encoding="utf-8")
+            assert "importlib.metadata" in text, (
+                f"{init.relative_to(REPO_ROOT)} must read __version__ from "
+                f"importlib.metadata — hardcoding drifts on every release"
+            )
+            # Belt-and-suspenders: forbid the literal `__version__ = "X.Y.Z"` form.
+            import re as _re
+
+            assert not _re.search(r'^__version__\s*=\s*"\d', text, _re.MULTILINE), (
+                f"{init.relative_to(REPO_ROOT)} hardcodes __version__ — use "
+                f"importlib.metadata.version() instead"
+            )
+
     def test_cli_dep_pin_matches_mcp_version(self, bump):
         """The CLI declares `ossmate-mcp>=X` — X must equal the MCP package
         version, otherwise users get an unsolvable resolver state on first

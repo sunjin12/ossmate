@@ -43,5 +43,11 @@
   "env": {
     "OSSMATE_PROJECT_ROOT": "${CLAUDE_PROJECT_DIR}",
     "OSSMATE_AUDIT_LOG": "${CLAUDE_PROJECT_DIR}/.ossmate/audit.jsonl"
+  },
+  "outputStyle": "maintainer",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ${CLAUDE_PROJECT_DIR}/.claude/statusline.sh",
+    "padding": 1
   }
 }

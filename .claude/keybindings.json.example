@@ -1,0 +1,23 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
+  "$docs": "Copy this file to ~/.claude/keybindings.json (user-level). Project-level keybindings are not supported by Claude Code. These are recommended bindings for OSS-maintainer workflows; remove or change anything you don't like.",
+  "bindings": [
+    {
+      "context": "Chat",
+      "bindings": {
+        "ctrl+e": "chat:externalEditor",
+        "ctrl+x ctrl+e": "chat:externalEditor",
+        "ctrl+alt+t": "chat:thinkingToggle",
+        "ctrl+alt+f": "chat:fastMode",
+        "alt+m": "chat:modelPicker",
+        "ctrl+alt+s": "chat:stash"
+      }
+    },
+    {
+      "context": "Global",
+      "bindings": {
+        "ctrl+alt+x": "app:interrupt"
+      }
+    }
+  ]
+}

@@ -21,18 +21,18 @@ It exists for two reasons:
 
 | Surface | Where | Status |
 |---|---|---|
-| Skills (slash commands) | [.claude/commands/](.claude/commands/) | ⏳ Phase 2 |
-| Subagents | [.claude/agents/](.claude/agents/) | ⏳ Phase 5 |
-| Hooks | [.claude/hooks/](.claude/hooks/) | ⏳ Phase 3 |
-| MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | ⏳ Phase 4 |
-| Plugin packaging | [.claude-plugin/](.claude-plugin/) | ⏳ Phase 6 |
-| Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | ⏳ Phase 7 |
-| Status line | [.claude/statusline.sh](.claude/statusline.sh) | ⏳ Phase 1 |
-| Output styles | [.claude/output-styles/](.claude/output-styles/) | ⏳ Phase 1 |
-| Scheduled triggers | [scheduled/](scheduled/) | ⏳ Phase 8 |
-| Memory templates | [.claude/CLAUDE.md](.claude/CLAUDE.md) | ✅ Phase 0 |
-| Settings & permissions | [.claude/settings.json](.claude/settings.json) | ✅ Phase 0 |
-| Keybindings | [.claude/keybindings.json](.claude/keybindings.json) | ⏳ Phase 1 |
+| Skills (slash commands) | [.claude/commands/](.claude/commands/) | `[ ]` Phase 2 |
+| Subagents | [.claude/agents/](.claude/agents/) | `[ ]` Phase 5 |
+| Hooks | [.claude/hooks/](.claude/hooks/) | `[ ]` Phase 3 |
+| MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[ ]` Phase 4 |
+| Plugin packaging | [.claude-plugin/](.claude-plugin/) | `[ ]` Phase 6 |
+| Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | `[ ]` Phase 7 |
+| Status line | [.claude/statusline.sh](.claude/statusline.sh) | `[x]` Phase 1 |
+| Output styles | [.claude/output-styles/](.claude/output-styles/) | `[x]` Phase 1 |
+| Scheduled triggers | [scheduled/](scheduled/) | `[ ]` Phase 8 |
+| Memory templates | [.claude/CLAUDE.md](.claude/CLAUDE.md) | `[x]` Phase 0 |
+| Settings & permissions | [.claude/settings.json](.claude/settings.json) | `[x]` Phase 0 |
+| Keybindings | [.claude/keybindings.json.example](.claude/keybindings.json.example) | `[x]` Phase 1 |
 
 ---
 

@@ -25,5 +25,5 @@ Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:` …). The `/changelog-b
 
 When completing a phase:
 1. `git tag phase-N`
-2. Update [README.md](README.md) "Built surfaces" table (⏳ → ✅)
+2. Update [README.md](README.md) "Built surfaces" table (`[ ]` → `[x]`)
 3. Add `[Unreleased]` entries to CHANGELOG.md

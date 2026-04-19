@@ -9,7 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-04-19
+
+First public release. Reference implementation of every Claude Code extension surface, packaged as both a plugin and a standalone CLI.
+
 ### Added
+- CI / Release pipeline (Phase 9):
+  - [.github/workflows/ci.yml](.github/workflows/ci.yml) — push + PR matrix, **3 OSes (ubuntu/macos/windows) × 3 Python versions (3.11/3.12/3.13)**, plus a separate `lint` (ruff) job and a `build` job that produces sdist+wheel artifacts. `fail-fast: false` so an OS-specific regression doesn't mask coverage on other cells. `concurrency` cancels superseded runs on the same ref. Permissions locked to `contents: read`
+  - [.github/workflows/release.yml](.github/workflows/release.yml) — triggers on `v*.*.*` tags; **`verify-tag` job blocks the publish path if the tag's version disagrees with `pyproject.toml`**. Uses **OIDC trusted publishing** (`pypa/gh-action-pypi-publish` + `id-token: write` + `environment: pypi`) — no API tokens in repo secrets. `publish-cli` `needs: publish-mcp` so the dep pin (`ossmate>=X` requires `ossmate-mcp>=X`) stays satisfiable on PyPI even on partial failure
+  - [scripts/bump_version.py](scripts/bump_version.py) — single source-of-truth version updater. The Ossmate version lives in 5 places (mcp pyproject, cli pyproject, cli's `ossmate-mcp>=X` dep pin, `plugin.json`, `marketplace.json` × 2 spots). The script writes all 5 atomically and exposes `--check` (CI gate) and `--print` (release-tag verifier) subcommands. Stdlib only — runs before any pip install
+  - [scripts/dev_link.sh](scripts/dev_link.sh) + [scripts/dev_link.ps1](scripts/dev_link.ps1) — twin bash/PowerShell helpers that editable-install both packages with dev extras and verify version sync. Doesn't create a venv (developer's choice) — runs into whichever Python env is active
+- 26 hermetic Phase 9 contract tests:
+  - [tests/test_versioning.py](tests/test_versioning.py) (9 tests) — bump script importable, semver regex rejects garbage (`v1.2.3`, `1.2`, `latest`), all 5 version markers agree, CLI's `ossmate-mcp>=X` pin equals MCP's actual version. **Locks the release artifact shape** so a future contributor renaming a JSON key fails CI before a broken release ships
+  - [tests/test_workflows.py](tests/test_workflows.py) (17 tests) — CI runs on push+PR, all 3 OSes present, all 3 Python versions present, `fail-fast: false`, `bump_version.py --check` invoked, `concurrency` group set, `permissions: contents: read`. Release: triggers on `v*.*.*`, `verify-tag` job exists, OIDC `id-token: write` present in BOTH publish jobs, `pypa/gh-action-pypi-publish` invoked, `publish-cli needs publish-mcp`, `environment: pypi` set, `skip-existing: true` for safe reruns. **Full suite now 160 tests, ~5 s**
+- Versions across all 5 release artifacts bumped to `0.1.0` and locked by the version-sync test. The CHANGELOG header note ("From v0.1.0 onwards…") now refers to a real shipped release
+- README polish: 3-way Quickstart updated to use `dev_link.sh`/`dev_link.ps1`, namespaced command form (`/ossmate:triage-pr`) documented, `## Releasing` section explains the bump→tag→publish flow
+
+### Earlier work (built before the v0.1.0 cut)
+
 - Project skeleton (Phase 0)
 - Memory templates ([.claude/CLAUDE.md](.claude/CLAUDE.md))
 - Minimal `.claude/settings.json` with permissions baseline

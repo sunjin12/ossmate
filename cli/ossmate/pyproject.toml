@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ossmate"
-version = "0.0.1"
+version = "0.1.0"
 description = "Claude-powered co-maintainer for open source projects"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -26,7 +26,7 @@ dependencies = [
     "rich>=13.7.0",
     "httpx>=0.27.0",
     "PyGithub>=2.4.0",
-    "ossmate-mcp>=0.0.1",
+    "ossmate-mcp>=0.1.0",
 ]
 
 [project.optional-dependencies]

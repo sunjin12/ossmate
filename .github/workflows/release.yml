@@ -1,0 +1,122 @@
+name: Release
+
+# Triggered by pushing a `vX.Y.Z` tag. The tag's version MUST match what
+# `scripts/bump_version.py --print` reports — the `verify-tag` job below
+# fails the workflow on drift before any artifact reaches PyPI.
+#
+# PyPI publishing uses OIDC trusted publishing (no API tokens stored in
+# repo secrets). Configure it once at:
+#   https://pypi.org/manage/account/publishing/
+# with publisher = sunjin12/ossmate, workflow = release.yml, env = pypi.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build only — skip PyPI upload"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify-tag:
+    name: verify tag matches pyproject version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.read.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - id: read
+        name: Read repo version + compare to tag
+        run: |
+          set -euo pipefail
+          repo_ver=$(python scripts/bump_version.py --print)
+          echo "version=$repo_ver" >> "$GITHUB_OUTPUT"
+          if [ "${GITHUB_REF_TYPE:-}" = "tag" ]; then
+            tag_ver="${GITHUB_REF_NAME#v}"
+            if [ "$repo_ver" != "$tag_ver" ]; then
+              echo "::error::tag $GITHUB_REF_NAME ($tag_ver) does not match repo version ($repo_ver)"
+              exit 1
+            fi
+            echo "tag and repo version both = $repo_ver"
+          else
+            echo "manual dispatch — skipping tag↔version match check"
+          fi
+
+  build:
+    name: build sdist + wheel for both packages
+    needs: verify-tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install build
+      - name: Build ossmate-mcp
+        run: python -m build mcp/ossmate_mcp --outdir dist/mcp
+      - name: Build ossmate (CLI)
+        run: python -m build cli/ossmate --outdir dist/cli
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-mcp
+          path: dist/mcp/*
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-cli
+          path: dist/cli/*
+          if-no-files-found: error
+
+  publish-mcp:
+    name: publish ossmate-mcp to PyPI
+    needs: build
+    if: github.event_name == 'push' || github.event.inputs.dry_run == 'false'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/ossmate-mcp
+    permissions:
+      id-token: write  # OIDC token for trusted publishing
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-mcp
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          # Skip if a release with this version was already uploaded — lets us
+          # rerun the workflow after a transient failure on the CLI step.
+          skip-existing: true
+
+  publish-cli:
+    name: publish ossmate (CLI) to PyPI
+    # Publish CLI AFTER MCP succeeds — CLI depends on `ossmate-mcp>=...`, so
+    # if MCP fails the CLI install would break for end users. Sequential not
+    # parallel intentionally.
+    needs: publish-mcp
+    if: github.event_name == 'push' || github.event.inputs.dry_run == 'false'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/ossmate
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-cli
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist
+          skip-existing: true

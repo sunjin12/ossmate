@@ -20,3 +20,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `outputStyle` and `statusLine` wired in `.claude/settings.json`
 - Recommended keybindings sample ([.claude/keybindings.json.example](.claude/keybindings.json.example))
 - First slash command [/triage-issue](.claude/commands/triage-issue.md) — Bash-only (Phase 2). Classifies an issue, proposes existing labels, drafts a maintainer reply. Read-only `gh` calls; never closes/comments/labels by itself
+- All five hook events wired (Phase 3):
+  - `PreToolUse(Bash)` — [pre_tool_use_guard.py](.claude/hooks/pre_tool_use_guard.py) blocks force-push, push to main, npm/twine publish, gh release create, gh pr merge, gh issue/pr state mutations
+  - `PostToolUse(Bash)` — [post_tool_use_audit.py](.claude/hooks/post_tool_use_audit.py) appends every Bash call to `.ossmate/audit.jsonl`
+  - `UserPromptSubmit` — [user_prompt_router.py](.claude/hooks/user_prompt_router.py) auto-fetches GitHub `#1234` references and injects them as additionalContext
+  - `SessionStart` — [session_start_brief.py](.claude/hooks/session_start_brief.py) injects open PR / new issue / stale / last-tag summary on startup or resume
+  - `Stop` — [stop_summary.py](.claude/hooks/stop_summary.py) appends one line per session to `.ossmate/journal.md`
+- Shared hook helpers in [.claude/hooks/_lib.py](.claude/hooks/_lib.py)
+- Hook contract test suite in [tests/test_hooks.py](tests/test_hooks.py) — 21 hermetic tests covering all 5 events, malformed input, and re-entry guard

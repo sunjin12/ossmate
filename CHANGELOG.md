@@ -36,3 +36,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Resources — `templates://release-notes`, `templates://issue-stale-nudge`, `templates://welcome`
 - MCP server registered via project-level [.mcp.json](.mcp.json); `enabledMcpjsonServers` gate added to [.claude/settings.json](.claude/settings.json)
 - 25 hermetic MCP tests in [tests/test_mcp_tools.py](tests/test_mcp_tools.py) — full suite now 46 tests, ~4.6 s
+- Six subagents (Phase 5) under [.claude/agents/](.claude/agents/), each pinned to a model tier matching the work's complexity:
+  - `haiku` — `issue-classifier` (bulk classification, JSON-only output), `community-greeter` (first-contributor welcome drafts)
+  - `sonnet` — `pr-triager` (single-PR triage with verdict + review draft), `release-notes-writer` (Keep-a-Changelog from merged PRs), `dep-auditor` (OSV.dev advisories via MCP)
+  - `opus` — `security-reviewer` (deep PR security pass: secrets, injection, auth, supply-chain, CI workflows)
+- Seven new skills (Phase 5) wired to delegate to the appropriate subagent via the Task tool: `/triage-pr`, `/release-notes`, `/stale-sweep`, `/onboard-contributor`, `/audit-deps`, `/security-review-pr`, `/changelog-bump`. Skills also enforce policy consistency — none allow-list destructive `gh` verbs that would bypass the PreToolUse hook
+- 41 hermetic contract tests in [tests/test_agents_skills.py](tests/test_agents_skills.py) — validate frontmatter (name/description/model/tools), lock in the model assignment matrix, forbid Write/Edit in subagent tools, forbid destructive verbs in skill `allowed-tools`. Full suite now **87 tests, ~4.4 s**

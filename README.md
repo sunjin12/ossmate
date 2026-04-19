@@ -21,8 +21,8 @@ It exists for two reasons:
 
 | Surface | Where | Status |
 |---|---|---|
-| Skills (slash commands) | [.claude/commands/](.claude/commands/) | `[~]` Phase 2 (1/8 — `/triage-issue`) |
-| Subagents | [.claude/agents/](.claude/agents/) | `[ ]` Phase 5 |
+| Skills (slash commands) | [.claude/commands/](.claude/commands/) | `[x]` Phase 5 (8/8) |
+| Subagents | [.claude/agents/](.claude/agents/) | `[x]` Phase 5 (6 — haiku/sonnet/opus matched) |
 | Hooks | [.claude/hooks/](.claude/hooks/) | `[x]` Phase 3 (5 events, 21 tests) |
 | MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[x]` Phase 4 (11 tools, 3 templates) |
 | Plugin packaging | [.claude-plugin/](.claude-plugin/) | `[ ]` Phase 6 |

@@ -14,10 +14,12 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parent.parent
 HOOKS_DIR = REPO_ROOT / ".claude" / "hooks"
 MCP_SRC = REPO_ROOT / "mcp" / "ossmate_mcp" / "src"
+CLI_SRC = REPO_ROOT / "cli" / "ossmate" / "src"
 
-# Make the MCP package importable from tests without an editable install.
-if str(MCP_SRC) not in sys.path:
-    sys.path.insert(0, str(MCP_SRC))
+# Make the MCP and CLI packages importable from tests without editable installs.
+for src in (MCP_SRC, CLI_SRC):
+    if str(src) not in sys.path:
+        sys.path.insert(0, str(src))
 
 
 @pytest.fixture

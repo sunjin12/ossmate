@@ -26,7 +26,7 @@ It exists for two reasons:
 | Hooks | [.claude/hooks/](.claude/hooks/) | `[x]` Phase 3 (5 events, 21 tests) |
 | MCP server | [mcp/ossmate_mcp/](mcp/ossmate_mcp/) | `[x]` Phase 4 (11 tools, 3 templates) |
 | Plugin packaging | [.claude-plugin/](.claude-plugin/) | `[x]` Phase 6 (manifest + self-marketplace) |
-| Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | `[ ]` Phase 7 |
+| Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | `[x]` Phase 7 (Typer + 8 subcommands, dry-run mode) |
 | Status line | [.claude/statusline.sh](.claude/statusline.sh) | `[x]` Phase 1 |
 | Output styles | [.claude/output-styles/](.claude/output-styles/) | `[x]` Phase 1 |
 | Scheduled triggers | [scheduled/](scheduled/) | `[ ]` Phase 8 |

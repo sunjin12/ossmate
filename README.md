@@ -29,7 +29,7 @@ It exists for two reasons:
 | Claude Agent SDK CLI | [cli/ossmate/](cli/ossmate/) | `[x]` Phase 7 (Typer + 8 subcommands, dry-run mode) |
 | Status line | [.claude/statusline.sh](.claude/statusline.sh) | `[x]` Phase 1 |
 | Output styles | [.claude/output-styles/](.claude/output-styles/) | `[x]` Phase 1 |
-| Scheduled triggers | [scheduled/](scheduled/) | `[ ]` Phase 8 |
+| Scheduled triggers | [scheduled/](scheduled/) | `[x]` Phase 8 (3 cron jobs, off-minute spread) |
 | Memory templates | [.claude/CLAUDE.md](.claude/CLAUDE.md) | `[x]` Phase 0 |
 | Settings & permissions | [.claude/settings.json](.claude/settings.json) | `[x]` Phase 0 |
 | Keybindings | [.claude/keybindings.json.example](.claude/keybindings.json.example) | `[x]` Phase 1 |

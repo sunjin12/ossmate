@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- `ossmate version` and `ossmate_mcp.__version__` resolved to the hardcoded literal `"0.0.1"` instead of the installed package version. Both `__init__.py` modules now read from `importlib.metadata.version()` so they always agree with what `pip show` reports. New invariant test [tests/test_versioning.py](tests/test_versioning.py)::`test_init_modules_dont_hardcode_versions` forbids the hardcoded form going forward — caught the day after v0.1.0 shipped to PyPI
+
 ## [0.1.0] - 2026-04-19
 
 First public release. Reference implementation of every Claude Code extension surface, packaged as both a plugin and a standalone CLI.

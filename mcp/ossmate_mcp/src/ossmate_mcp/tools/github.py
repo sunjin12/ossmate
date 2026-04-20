@@ -17,7 +17,7 @@ import json
 import os
 import shutil
 import subprocess
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from mcp.server.fastmcp import FastMCP
@@ -190,7 +190,7 @@ def register(mcp: FastMCP) -> None:
         ])
         if data is None:
             return {"error": "gh_issue_list_failed"}
-        cutoff = datetime.now(tz=timezone.utc).timestamp() - days * 86400
+        cutoff = datetime.now(tz=UTC).timestamp() - days * 86400
         stale = []
         for issue in data:
             updated = issue.get("updatedAt")
@@ -202,7 +202,7 @@ def register(mcp: FastMCP) -> None:
                 continue
             if ts <= cutoff:
                 issue["age_days"] = int(
-                    (datetime.now(tz=timezone.utc).timestamp() - ts) / 86400
+                    (datetime.now(tz=UTC).timestamp() - ts) / 86400
                 )
                 stale.append(issue)
         return {"count": len(stale), "threshold_days": days, "issues": stale}

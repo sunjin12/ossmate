@@ -19,7 +19,6 @@ from .agent import RunRequest, run
 from .prompts import SkillNotFoundError, load_skill
 from .tools.repo import ProjectRootNotFoundError, find_project_root
 
-
 app = typer.Typer(
     name="ossmate",
     help="OSS Maintainer's co-pilot — runs the same workflows as the Claude Code "
@@ -120,7 +119,10 @@ def release_notes(
     _dispatch("release-notes", args, dry_run=dry_run, cwd=cwd, model=model)
 
 
-@app.command("stale-sweep", help="Find issues older than N days and propose nudge / close / wontfix.")
+@app.command(
+    "stale-sweep",
+    help="Find issues older than N days and propose nudge / close / wontfix.",
+)
 def stale_sweep(
     days: int = typer.Option(60, "--days", help="Inactivity threshold in days."),
     label: str | None = typer.Option(None, "--label", help="Restrict to a single label."),
@@ -134,7 +136,10 @@ def stale_sweep(
     _dispatch("stale-sweep", args, dry_run=dry_run, cwd=cwd, model=model)
 
 
-@app.command("onboard-contributor", help="Draft a warm welcome comment for a first-time contributor.")
+@app.command(
+    "onboard-contributor",
+    help="Draft a warm welcome comment for a first-time contributor.",
+)
 def onboard_contributor(
     number: str = typer.Argument(..., help="PR or issue number."),
     dry_run: bool = _common_dry_run(),
@@ -178,7 +183,10 @@ def security_review_pr(
     _dispatch("security-review-pr", args, dry_run=dry_run, cwd=cwd, model=model)
 
 
-@app.command("changelog-bump", help="Inspect Conventional Commits and propose the next semver bump.")
+@app.command(
+    "changelog-bump",
+    help="Inspect Conventional Commits and propose the next semver bump.",
+)
 def changelog_bump(
     since: str | None = typer.Option(None, "--since", help="Ref or ISO date to diff from."),
     dry_run: bool = _common_dry_run(),

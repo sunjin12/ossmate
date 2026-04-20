@@ -13,7 +13,8 @@ import shutil
 import subprocess
 import sys
 from dataclasses import asdict, dataclass
-from importlib.metadata import PackageNotFoundError, version as _pkg_version
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
 from pathlib import Path
 from typing import Literal
 

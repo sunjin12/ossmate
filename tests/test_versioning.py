@@ -60,7 +60,6 @@ class TestBumpScript:
 
     def test_semver_regex_rejects_garbage(self, bump):
         """The bump script must refuse non-semver versions to keep PyPI happy."""
-        import argparse
 
         with pytest.raises(SystemExit):
             bump.bump("v1.2.3")  # leading v

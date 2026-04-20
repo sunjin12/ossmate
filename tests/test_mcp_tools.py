@@ -12,7 +12,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import pytest
 
 # Helpers under test.
 from ossmate_mcp.tools import changelog as changelog_mod

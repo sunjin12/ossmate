@@ -71,6 +71,8 @@ ossmate triage-pr 1234 --dry-run    # print the rendered prompt + ClaudeAgentOpt
 
 The CLI loads the same `.claude/commands/*.md` skill bodies the plugin uses — write a skill once, get a slash command and a CLI subcommand for free.
 
+If your first command fails, run `ossmate doctor` to diagnose the environment (Python, `gh` CLI auth, MCP server, `.claude/` / `.ossmate/` directories). Pass `--json` for CI-friendly output.
+
 ### C. From source (development)
 
 ```bash

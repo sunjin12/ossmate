@@ -186,8 +186,8 @@ class TestCliSkillMapping:
     def test_no_orphan_subcommands(self):
         """A subcommand without a matching skill file is dead code."""
         skill_names = {p.stem for p in COMMANDS_DIR.glob("*.md")}
-        # `version` is the one CLI-only command we expect.
-        cli_only_allowlist = {"version"}
+        # `version` and `doctor` are CLI-only commands with no slash equivalent.
+        cli_only_allowlist = {"version", "doctor"}
         registered = _registered_subcommands() - cli_only_allowlist
         orphans = registered - skill_names
         assert not orphans, (

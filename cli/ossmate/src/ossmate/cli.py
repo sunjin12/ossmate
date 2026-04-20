@@ -196,6 +196,26 @@ def version_cmd() -> None:
     sys.stdout.write(f"ossmate {__version__}\n")
 
 
+@app.command("doctor", help="Run diagnostic checks for the Ossmate environment.")
+def doctor(
+    json_output: bool = typer.Option(
+        False,
+        "--json",
+        help="Emit machine-readable JSON instead of pretty output.",
+    ),
+    cwd: Path | None = _common_cwd(),
+) -> None:
+    from .diagnostics import render_json, render_pretty, run_all
+
+    results = run_all(cwd)
+    if json_output:
+        sys.stdout.write(render_json(results) + "\n")
+    else:
+        render_pretty(results)
+    if any(r.status == "fail" for r in results):
+        raise typer.Exit(1)
+
+
 def main() -> None:
     for stream in (sys.stdout, sys.stderr):
         reconfigure = getattr(stream, "reconfigure", None)

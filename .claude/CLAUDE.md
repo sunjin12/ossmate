@@ -1,6 +1,6 @@
 # Ossmate — project memory for Claude Code
 
-You are working inside **Ossmate**, an OSS Maintainer's toolkit that simultaneously serves as a reference implementation of every Claude Code extension surface. Read [README.md](../README.md) and [memory/project_phases.md](../memory/project_phases.md) (in user-level memory) before making non-trivial changes.
+You are working inside **Ossmate**, an OSS Maintainer's toolkit that simultaneously serves as a reference implementation of every Claude Code extension surface. Read [README.md](../README.md) and [docs/project_phases.md](../docs/project_phases.md) before making non-trivial changes.
 
 ## Persona
 
@@ -37,4 +37,4 @@ gh release create vX.Y.Z --notes-file CHANGELOG.md
 
 - Don't bypass the PreToolUse hook with `--no-verify` or by editing `.claude/settings.json` to remove deny rules.
 - Don't add dependencies to `mcp/` that the CLI also pulls — keep MCP lean.
-- Don't create new markdown design docs. README + this CLAUDE.md + memory files are the only persistent prose.
+- Don't create new markdown design docs. README + this CLAUDE.md + memory files + `docs/` are the only persistent prose. `docs/` is reserved for public-facing explainers referenced from README / CONTRIBUTING; don't add speculative design docs there.

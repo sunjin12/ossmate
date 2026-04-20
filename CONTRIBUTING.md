@@ -1,6 +1,6 @@
 # Contributing to Ossmate
 
-Thanks for your interest! Ossmate is built in public, in phases — see [memory/project_phases.md](memory/project_phases.md).
+Thanks for your interest! Ossmate is built in public, in phases — see [docs/project_phases.md](docs/project_phases.md).
 
 ## Development setup
 

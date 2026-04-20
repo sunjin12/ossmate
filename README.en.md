@@ -110,7 +110,24 @@ The same MCP server backs both the plugin and the standalone CLI — write tools
 
 ## Why each surface?
 
-Ossmate uses every harness extension because the OSS-maintainer domain genuinely needs each one. This isn't a contrived demo — read [docs/architecture.md](docs/architecture.md) for the per-surface justification.
+All 12 harness extensions pull their weight — each removes a specific friction in the OSS-maintainer workflow. Not a contrived demo mapping. The table below justifies each surface by **what friction shows up when it's missing**.
+
+| Surface | Friction if absent |
+|---|---|
+| **Skills** (slash commands) | Repeated workflows (triage / release notes / stale sweep) retyped into every prompt |
+| **Subagents** | One-size-fits-all model — Opus for bulk classification, Haiku for security audit: cost mismatch |
+| **Hooks** | One `git push origin main` mistake = hours of recovery. Relies on human willpower alone |
+| **MCP server** | Slash / CLI / other AI clients each re-implement gh · OSV · lockfile parsing |
+| **Plugin packaging** | Onboarding = `pip install` + `.claude/` copy + settings edit (multi-step) |
+| **Agent SDK CLI** | CI / remote shell / non-Claude-Code environments have to rebuild the same workflow |
+| **Status line** | PR count · stale count · last tag visible only via browser-tab round-trip |
+| **Output styles** | Keep-a-Changelog format and reviewer tone hand-corrected every release |
+| **Scheduled triggers** | Daily checks dependent on willpower — skipping a few days cascades |
+| **Memory templates** | Persona · branch protection · commit convention re-explained every session |
+| **Settings & permissions** | Destructive `gh` verbs only blocked at hook layer — no allowlist baseline |
+| **Keybindings** | No power-user gestures for maintainer actions (optional — lowest value surface) |
+
+For the build order and motivation behind each surface, see this repo's PR log and the `phase-0` ~ `phase-9` git tags.
 
 ---
 
@@ -137,7 +154,7 @@ The release workflow refuses to publish if the tag's version disagrees with `pyp
 
 ## Development status
 
-Currently building in phases — see [memory/project_phases.md](https://github.com/sunjin12/ossmate/blob/main/memory/project_phases.md) for the plan. Each phase is tagged (`phase-0`, `phase-1`, …) so you can browse the project's evolution.
+Currently building in phases — see [docs/project_phases.md](docs/project_phases.md) for the plan. Each phase is tagged (`phase-0`, `phase-1`, …) so you can browse the project's evolution.
 
 ---
 

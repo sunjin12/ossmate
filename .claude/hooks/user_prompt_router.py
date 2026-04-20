@@ -51,7 +51,7 @@ def main() -> None:
         if issue is None:
             continue
 
-        labels = ", ".join(l.get("name", "") for l in (issue.get("labels") or []))
+        labels = ", ".join(lbl.get("name", "") for lbl in (issue.get("labels") or []))
         body = (issue.get("body") or "").strip()
         if len(body) > 1500:
             body = body[:1500] + "\n…(truncated)"

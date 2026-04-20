@@ -26,7 +26,6 @@ import json
 import re
 from pathlib import Path
 
-import pytest
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PLUGIN_DIR = REPO_ROOT / ".claude-plugin"
@@ -170,7 +169,10 @@ class TestPluginHooks:
     def test_referenced_hook_scripts_exist(self):
         """A typo in a path silently disables the hook — prevent that."""
         text = PLUGIN_HOOKS.read_text(encoding="utf-8")
-        for match in re.finditer(r"\$\{CLAUDE_PLUGIN_ROOT\}([^\"]+)", text):
+        # Exclude both `"` and `\` from the capture: the JSON-escaped `\"`
+        # that terminates the command string otherwise leaves a trailing `\`
+        # on Linux/macOS where pathlib treats it as a literal filename char.
+        for match in re.finditer(r"\$\{CLAUDE_PLUGIN_ROOT\}([^\"\\]+)", text):
             rel = match.group(1).lstrip("/")
             target = REPO_ROOT / rel
             assert target.exists(), (

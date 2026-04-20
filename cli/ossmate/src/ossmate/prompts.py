@@ -12,7 +12,6 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-
 _FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.DOTALL)
 _KV_RE = re.compile(r"^([A-Za-z][\w-]*)\s*:\s*(.*)$")
 _PLACEHOLDER_RE = re.compile(r"\$(\d+|ARGUMENTS)")
